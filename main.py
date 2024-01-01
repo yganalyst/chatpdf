@@ -1,3 +1,7 @@
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
@@ -13,7 +17,10 @@ st.title("Chat PDF")
 st.write("---")
 
 # 파일 업로드
-uploaded_file = st.file_uploader("Choose a file")
+uploaded_file = st.file_uploader(
+    "PDF 파일을 올려주세요.",
+    type=["pdf"]
+)
 st.write("---")
 
 def pdf_to_document(uploaded_file):
