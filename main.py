@@ -13,12 +13,13 @@ import os, tempfile
 
 
 # 제목
-st.title("Chat PDF")
+st.title("Custom Data와 대화하기")
 st.write("---")
+st.write("> [yganalyst](https://github.com/yganalyst)")
 
 # 파일 업로드
 uploaded_file = st.file_uploader(
-    "PDF 파일을 올려주세요.",
+    "데이터를 올려주세요(아직 PDF만 돼요!).",
     type=["pdf"]
 )
 st.write("---")
@@ -53,7 +54,7 @@ if uploaded_file is not None:
     db = Chroma.from_documents(texts, embeddings_model)
 
     ## Create Query
-    st.header("PDF에게 질문해보세요!")
+    st.header("당신의 데이터에게 질문해보세요!")
     question = st.text_input("질문을 입력하세요")
 
     if st.button('질문하기'):
